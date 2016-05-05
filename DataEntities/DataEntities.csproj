@@ -49,14 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\CashRegister.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Caza.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\DebtPayment.cs" />
+    <Compile Include="Entities\DebtRegister.cs" />
     <Compile Include="Entities\Governorate.cs" />
     <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\ItemPrice.cs" />
+    <Compile Include="Entities\ItemQuantity.cs" />
     <Compile Include="Entities\Option.cs" />
+    <Compile Include="Entities\OptionCategory.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderDetail.cs" />
+    <Compile Include="Entities\PaymentMethod.cs" />
     <Compile Include="Entities\ShippingAddress.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

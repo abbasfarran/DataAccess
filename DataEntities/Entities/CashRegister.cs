@@ -1,6 +1,7 @@
 ﻿namespace DataEntities.Entities
 {
-    public class OrderDetail
+    public class CashRegister
     {
+        
     }
 }

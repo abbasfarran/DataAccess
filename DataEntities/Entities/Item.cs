@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DataEntities.Entities
 {
@@ -13,6 +8,7 @@ namespace DataEntities.Entities
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        public virtual IEnumerable<Option> Options { get; set; }
 
     }
 }
