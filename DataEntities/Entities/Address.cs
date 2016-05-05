@@ -1,6 +1,6 @@
 ﻿namespace DataEntities.Entities
 {
-    public class ShippingAddress
+    public class Address
     {
     }
 }
