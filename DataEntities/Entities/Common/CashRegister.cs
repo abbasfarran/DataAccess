@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataEntities.Entities
+namespace DataEntities.Entities.Common
 {
     public class CashRegister
     {

@@ -1,5 +1,7 @@
 ﻿using DataEntities.Entities;
 using System.Data.Entity;
+using DataEntities.Entities.Common;
+using DataEntities.Entities.Retail;
 
 namespace DataEntities
 {

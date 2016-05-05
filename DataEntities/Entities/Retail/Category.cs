@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using DataEntities.Entities.Common;
 
-namespace DataEntities.Entities
+namespace DataEntities.Entities.Retail
 {
     public class Category
     {

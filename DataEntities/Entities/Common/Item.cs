@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Reflection.Emit;
+using DataEntities.Entities.Retail;
 
-namespace DataEntities.Entities
+namespace DataEntities.Entities.Common
 {
     public class Item
     {
@@ -11,6 +13,8 @@ namespace DataEntities.Entities
         public  int ItemTypeId { get; set; }
         public virtual ItemType ItemType { get; set; }
         public virtual IEnumerable<Option> Options { get; set; }
+        public virtual IEnumerable<ItemPrice> ItemPrices { get; set; }
+      
 
 
     }
