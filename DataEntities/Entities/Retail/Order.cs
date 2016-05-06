@@ -11,7 +11,7 @@ namespace DataEntities.Entities.Retail
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public int AddressId { get; set; }
-        public virtual Address ShippingAddress { get; set; }
+        public virtual ShippingAddress ShippingAddress { get; set; }
         public int CurrencyId { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }

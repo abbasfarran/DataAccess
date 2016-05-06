@@ -49,8 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\AddressBase.cs" />
     <Compile Include="Abstracts\Person.cs" />
-    <Compile Include="Entities\Common\Address.cs" />
+    <Compile Include="Entities\Retail\ShippingAddress.cs" />
     <Compile Include="Entities\Common\CashRegister.cs" />
     <Compile Include="Entities\Common\Caza.cs" />
     <Compile Include="Entities\Common\Currency.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Entities\Retail\Order.cs" />
     <Compile Include="Entities\Retail\OrderDetail.cs" />
     <Compile Include="Entities\Supply\Supplier.cs" />
+    <Compile Include="Entities\Supply\SupplierAddress.cs" />
     <Compile Include="Entities\Supply\SupplyOrder.cs" />
     <Compile Include="Entities\Supply\SupplyOrderDetail.cs" />
     <Compile Include="MyContext.cs" />
