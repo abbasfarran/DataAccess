@@ -1,5 +1,6 @@
 ﻿using DataEntities.Entities;
 using System.Data.Entity;
+using DataEntities.Abstracts;
 using DataEntities.Entities.Common;
 using DataEntities.Entities.Retail;
 

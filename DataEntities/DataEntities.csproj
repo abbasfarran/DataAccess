@@ -70,7 +70,7 @@
     <Compile Include="Entities\Retail\OrderDetail.cs" />
     <Compile Include="Entities\Supply\Supplier.cs" />
     <Compile Include="Entities\Supply\SupplyOrder.cs" />
-    <Compile Include="Entities\Supply\SupplyOrderDetails.cs" />
+    <Compile Include="Entities\Supply\SupplyOrderDetail.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
