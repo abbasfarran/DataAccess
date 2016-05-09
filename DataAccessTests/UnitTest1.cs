@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataEntities;
 using DataEntities.Abstracts;
+using DataEntities.Entities.Common;
 using DataEntities.Entities.Retail;
 
 namespace DataAccessTests
@@ -15,7 +16,20 @@ namespace DataAccessTests
         [TestMethod]
         public void TestMethod1()
         {
+            
             var context = new MyContext();
+            Governorate governorate2 = new Governorate()
+            {
+                GovernorateName = "محافظة جبل لبنان",
+                Cazas = new List<Caza>() {
+                            new Caza(){CazaName="قضاء كسروان"},
+                            new Caza(){CazaName="قضاء المتن"},
+                            new Caza(){CazaName="قضاء بعبدا"},
+                            new Caza(){CazaName="قضاء عاليه"},
+                            new Caza(){CazaName="قضاء الشوف"}
+            }
+
+            };
             var customer = new Customer
             {
                 FirstName = "abbas",
@@ -25,8 +39,7 @@ namespace DataAccessTests
             };
             context.Customers.Add(customer);
             context.SaveChanges();
-            var customers=new List<Customer>();
-            customers = context.Customers.ToList();
+            var customers = context.Customers.ToList();
             Assert.AreEqual(1,customers.Count());
         }
     }

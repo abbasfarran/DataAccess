@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Abstracts\AddressBase.cs" />
     <Compile Include="Abstracts\Person.cs" />
+    <Compile Include="DataContextSeeder.cs" />
     <Compile Include="Entities\Retail\ShippingAddress.cs" />
     <Compile Include="Entities\Common\CashRegister.cs" />
     <Compile Include="Entities\Common\Caza.cs" />
@@ -73,12 +74,29 @@
     <Compile Include="Entities\Supply\SupplierAddress.cs" />
     <Compile Include="Entities\Supply\SupplyOrder.cs" />
     <Compile Include="Entities\Supply\SupplyOrderDetail.cs" />
+    <Compile Include="Migrations\201605090817310_InitialCreate.cs" />
+    <Compile Include="Migrations\201605090817310_InitialCreate.Designer.cs">
+      <DependentUpon>201605090817310_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605091028192_fdf.cs" />
+    <Compile Include="Migrations\201605091028192_fdf.Designer.cs">
+      <DependentUpon>201605091028192_fdf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605090817310_InitialCreate.resx">
+      <DependentUpon>201605090817310_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605091028192_fdf.resx">
+      <DependentUpon>201605091028192_fdf.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,7 +14,7 @@ namespace DataEntities.Entities.Retail
         public virtual ShippingAddress ShippingAddress { get; set; }
         public int CurrencyId { get; set; }
         public virtual Currency Currency { get; set; }
-        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public int Discount { get; set; }
 
 

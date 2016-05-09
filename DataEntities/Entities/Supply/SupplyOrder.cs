@@ -12,7 +12,7 @@ namespace DataEntities.Entities.Supply
         public virtual Supplier Supplier { get; set; }
         public int CurrencyId { get; set; }
         public virtual Currency Currency { get; set; }
-        public virtual IEnumerable<SupplyOrderDetail> SupplyOrderDetails { get; set; }
+        public virtual ICollection<SupplyOrderDetail> SupplyOrderDetails { get; set; }
 
 
 

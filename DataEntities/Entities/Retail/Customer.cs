@@ -6,8 +6,8 @@ namespace DataEntities.Entities.Retail
 {
     public class Customer : Person
     {
-        public virtual IEnumerable<ShippingAddress> ShippingAddresses { get; set; }
-        public virtual IEnumerable<Order> Orders { get; set; }
-        public virtual IEnumerable<DebtPayment> DebtPayments { get; set; }
+        public virtual ICollection<ShippingAddress> ShippingAddresses { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<DebtPayment> DebtPayments { get; set; }
     }
 }

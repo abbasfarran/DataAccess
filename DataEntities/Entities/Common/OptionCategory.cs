@@ -6,6 +6,6 @@ namespace DataEntities.Entities.Common
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public virtual IEnumerable<Option> Options { get; set; }
+        public virtual ICollection<Option> Options { get; set; }
     }
 }

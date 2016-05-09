@@ -12,8 +12,8 @@ namespace DataEntities.Entities.Common
         public virtual Category Category { get; set; }
         public  int ItemTypeId { get; set; }
         public virtual ItemType ItemType { get; set; }
-        public virtual IEnumerable<Option> Options { get; set; }
-        public virtual IEnumerable<ItemPrice> ItemPrices { get; set; }
+        public virtual ICollection<Option> Options { get; set; }
+        public virtual ICollection<ItemPrice> ItemPrices { get; set; }
       
 
 

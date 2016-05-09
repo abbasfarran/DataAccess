@@ -7,6 +7,6 @@ namespace DataEntities.Entities.Retail
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public virtual  IEnumerable<Item> Items { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
     }
 }
