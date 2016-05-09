@@ -33,5 +33,13 @@ namespace RetailStoreWinForms
             };
 
         }
+
+        private void existingCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomersList ctl=new CustomersList();
+            ctl.MdiParent = this;
+            ctl.Show();
+            ctl.WindowState= FormWindowState.Maximized;
+        }
     }
 }

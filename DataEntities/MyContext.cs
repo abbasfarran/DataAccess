@@ -34,7 +34,7 @@ namespace DataEntities
 
         public MyContext()
         {
-            Database.SetInitializer<MyContext>(new DropCreateDatabaseAlways<MyContext>());
+            Database.SetInitializer<MyContext>(new DropCreateDatabaseIfModelChanges<MyContext>());
         }
     }
 }

@@ -42,5 +42,21 @@ namespace RetailStoreWinForms
             this.DialogResult=DialogResult.Yes;
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Abort;
+            this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            txtlname.Clear();
+            txfname.Clear();
+            txtMob.Clear();
+            txtcomp.Clear();
+            txtLand.Clear();
+            txtemail.Clear();
+        }
     }
 }

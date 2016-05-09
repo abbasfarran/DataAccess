@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using DataEntities;
 using DataEntities.Entities.Retail;
 using System.Windows.Forms;
@@ -30,11 +32,16 @@ namespace DataAccess.Repositories
             _db.Entry<Customer>(customer).State= EntityState.Modified;
         }
 
+        public List<Customer> All()
+        {
+            var results= _db.Customers.ToList();
+            return results;
+        }
+
         public void Save()
         {
             _db.SaveChanges();
-            MessageBox.Show("Finished");
-        }
+           }
 
 
     }
