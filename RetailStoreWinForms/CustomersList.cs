@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataAccess.Repositories;
+using DataEntities.Entities.Retail;
 
 namespace RetailStoreWinForms
 {
@@ -27,7 +28,15 @@ namespace RetailStoreWinForms
         private void CustomersList_Shown(object sender, EventArgs e)
         {
             CustomerRepository customerRepository = new CustomerRepository();
-            dataGridView1.DataSource = customerRepository.All();
+
+            List<Customer> customers = customerRepository.All();
+            this.WindowState = FormWindowState.Maximized;
+            BindingSource customersbgs = new BindingSource() { DataSource = customers };
+            BindingSource shippingAdressbgs = new BindingSource() { DataSource = customersbgs  };
+            dataGridView1.DataSource = customersbgs;
+           
+            
+           
         }
     }
 }
