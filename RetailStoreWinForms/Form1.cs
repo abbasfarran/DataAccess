@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using DataAccess.Repositories;
 using DataEntities;
@@ -7,10 +8,11 @@ namespace RetailStoreWinForms
 {
     public partial class Form1 : Form
     {
-        private new Form ActiveForm { get; set; }
+        private CustomersList _customersList;
         public Form1()
         {
             InitializeComponent();
+            _customersList=new CustomersList();
         }
 
         private void newCustomerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,11 +38,16 @@ namespace RetailStoreWinForms
 
         private void LoadCustomersForm()
         {
-            ActiveForm?.Close();
-            ActiveForm = new CustomersList {MdiParent = this};
-            ActiveForm.Show();
-            ActiveForm.WindowState = FormWindowState.Maximized;
-          
+            
+            if (!_customersList.Visible)
+            {
+                _customersList = new CustomersList {MdiParent = this};
+                _customersList.Show();
+                _customersList.WindowState = FormWindowState.Maximized;
+            }
+            CustomerRepository ctr = new CustomerRepository();
+            _customersList.Customersbgs.DataSource = ctr.All();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

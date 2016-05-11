@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataAccess.Repositories;
 using DataEntities.Entities.Retail;
 
 namespace RetailStoreWinForms
@@ -17,26 +9,45 @@ namespace RetailStoreWinForms
         public CustomersList()
         {
             InitializeComponent();
+            Customersbgs = new BindingSource();
+            ShippingAdressbgs=new BindingSource();
+            Customersbgs.DataSourceChanged += Customersbgs_DataSourceChanged;
+            ShippingAdressbgs.DataSourceChanged += ShippingAdressbgs_DataSourceChanged; ;
         }
+
+        private void ShippingAdressbgs_DataSourceChanged(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = ShippingAdressbgs;
+        }
+
+        public BindingSource ShippingAdressbgs { get; set; }
+        public BindingSource Customersbgs { get; set; }
 
         private void CustomersList_Load(object sender, EventArgs e)
         {
-            
-
         }
 
         private void CustomersList_Shown(object sender, EventArgs e)
         {
-            CustomerRepository customerRepository = new CustomerRepository();
+        }
 
-            List<Customer> customers = customerRepository.All();
-            this.WindowState = FormWindowState.Maximized;
-            BindingSource customersbgs = new BindingSource() { DataSource = customers };
-            BindingSource shippingAdressbgs = new BindingSource() { DataSource = customersbgs  };
-            dataGridView1.DataSource = customersbgs;
-           
-            
-           
+        private void Customersbgs_DataSourceChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = Customersbgs;
+            dataGridView1.ClearSelection();
+        }
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Customer customer = (Customer)dataGridView1.CurrentRow?.DataBoundItem;
+            if (customer?.ShippingAddresses.Count==0)
+            {
+                splitContainer1.Panel2Collapsed = true;
+                return;
+            }
+            ShippingAdressbgs.DataSource = customer.ShippingAddresses;
+            splitContainer1.Panel2Collapsed = false;
         }
     }
 }
