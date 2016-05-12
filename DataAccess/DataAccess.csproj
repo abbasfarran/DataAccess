@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ShippingAddressRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

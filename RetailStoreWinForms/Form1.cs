@@ -18,37 +18,18 @@ namespace RetailStoreWinForms
         private void newCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-            CustomerForm ctf = new CustomerForm();
-            var result = ctf.ShowDialog();
-            if (result == DialogResult.Yes)
-            {
-                CustomerRepository customerRepository=new CustomerRepository();
-                customerRepository.Add(ctf.Customer);
-                customerRepository.Save();
-                ctf.Dispose();
-                LoadCustomersForm();
-            };
-
+           CustomerStaticMethods.Addcustomer();
+            CustomerStaticMethods.LoadCustomersForm(ref _customersList, this);
+            
         }
 
         private void existingCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadCustomersForm();
+           CustomerStaticMethods.LoadCustomersForm( ref _customersList,this);
+          
         }
 
-        private void LoadCustomersForm()
-        {
-            
-            if (!_customersList.Visible)
-            {
-                _customersList = new CustomersList {MdiParent = this};
-                _customersList.Show();
-                _customersList.WindowState = FormWindowState.Maximized;
-            }
-            CustomerRepository ctr = new CustomerRepository();
-            _customersList.Customersbgs.DataSource = ctr.All();
-
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {

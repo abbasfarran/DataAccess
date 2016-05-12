@@ -25,11 +25,6 @@ namespace RetailStoreWinForms
 
         }
 
-        private void CustomerForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -57,6 +52,16 @@ namespace RetailStoreWinForms
             txtcomp.Clear();
             txtLand.Clear();
             txtemail.Clear();
+        }
+
+        private void CustomerForm_Shown(object sender, EventArgs e)
+        {
+            txfname.Text = Customer?.FirstName;
+            txtlname.Text = Customer?.LastName;
+            txtcomp.Text = Customer?.CompanyName;
+            txtMob.Text = Customer?.Mobile;
+            txtLand.Text = Customer?.LandLine;
+            txtemail.Text = Customer?.Email;
         }
     }
 }

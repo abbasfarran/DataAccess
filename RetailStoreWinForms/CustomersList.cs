@@ -23,31 +23,106 @@ namespace RetailStoreWinForms
         public BindingSource ShippingAdressbgs { get; set; }
         public BindingSource Customersbgs { get; set; }
 
-        private void CustomersList_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void CustomersList_Shown(object sender, EventArgs e)
-        {
-        }
+      
 
         private void Customersbgs_DataSourceChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = Customersbgs;
-            dataGridView1.ClearSelection();
+            dataGridView1.CurrentCell=null;
         }
 
-
+        //customers list
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Customer customer = (Customer)dataGridView1.CurrentRow?.DataBoundItem;
-            if (customer?.ShippingAddresses.Count==0)
+            if (customer?.ShippingAddresses.Count == 0)
             {
-                splitContainer1.Panel2Collapsed = true;
+                
+                ShippingAdressbgs.DataSource = null;
                 return;
             }
-            ShippingAdressbgs.DataSource = customer.ShippingAddresses;
-            splitContainer1.Panel2Collapsed = false;
+            ShippingAdressbgs.DataSource = customer?.ShippingAddresses;
+            
+        }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+        //add customer
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (CustomerStaticMethods.Addcustomer())
+            {
+                CustomerStaticMethods.BindCustomers(this, dataGridView1);
+                if (dataGridView1.RowCount > 0)
+                {
+
+                    dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0];
+                }
+            }
+           
+        }
+
+        private void CustomersList_Shown(object sender, EventArgs e)
+        {
+            CustomerStaticMethods.BindCustomers(this,dataGridView1);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        //edit customer
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            int rowpos = -1;
+            if (dataGridView1.CurrentRow != null)
+            {
+                rowpos = dataGridView1.CurrentRow.Index;
+            }
+            Customer customer = (Customer) dataGridView1.CurrentRow?.DataBoundItem;
+            if (customer != null)
+            {
+                CustomerStaticMethods.Editcustomer(customer);
+                CustomerStaticMethods.BindCustomers(this, dataGridView1);
+                if (dataGridView1.RowCount > 0)
+                {
+
+                    dataGridView1.CurrentCell = dataGridView1.Rows[rowpos].Cells[0];
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select a Customer First", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+        }
+       
+    //remove customer
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            int rowpos = -1;
+            if (dataGridView1.CurrentRow != null)
+            {
+                rowpos = dataGridView1.CurrentRow.Index;
+            }
+            Customer customer = (Customer)dataGridView1.CurrentRow?.DataBoundItem;
+            if (customer != null)
+            {
+                CustomerStaticMethods.Removecustomer(customer);
+                CustomerStaticMethods.BindCustomers(this,dataGridView1);
+                if (dataGridView1.RowCount > 0)
+                {
+
+                    dataGridView1.CurrentCell = dataGridView1.Rows[rowpos].Cells[0];
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select a Customer First", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

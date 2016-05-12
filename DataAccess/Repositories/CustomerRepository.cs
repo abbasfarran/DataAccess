@@ -10,37 +10,39 @@ namespace DataAccess.Repositories
     public class CustomerRepository
 
     {
-        private MyContext _db = null;
+        private MyContext _db;
 
-        public CustomerRepository()
+        public CustomerRepository(MyContext db)
         {
-            _db = new MyContext();
+            _db = db;
         }
 
         public void Add(Customer customer)
         {
             _db.Customers.Add(customer);
+            
         }
 
         public void Remove(Customer customer)
         {
-            _db.Customers.Remove(customer);
+           _db.Customers.Remove(customer);
         }
 
         public void Update(Customer customer)
         {
-            _db.Entry<Customer>(customer).State= EntityState.Modified;
+           _db.Entry<Customer>(customer).State= EntityState.Modified;
         }
 
         public List<Customer> All()
         {
-            var results= _db.Customers.ToList();
-            return results;
+           var results= _db.Customers.ToList();
+           return results;
         }
 
         public void Save()
         {
             _db.SaveChanges();
+            
            }
 
 
