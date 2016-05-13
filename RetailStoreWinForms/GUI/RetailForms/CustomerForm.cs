@@ -1,15 +1,8 @@
-﻿using DataEntities.Entities.Retail;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using DataEntities.Entities.Retail;
 
-namespace RetailStoreWinForms
+namespace RetailStoreWinForms.GUI.RetailForms
 {
     public partial class CustomerForm : Form
     {
@@ -62,6 +55,11 @@ namespace RetailStoreWinForms
             txtMob.Text = Customer?.Mobile;
             txtLand.Text = Customer?.LandLine;
             txtemail.Text = Customer?.Email;
+        }
+
+        private void CustomerForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

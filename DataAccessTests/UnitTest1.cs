@@ -64,9 +64,11 @@ namespace DataAccessTests
                 GovernorateName = "محافظة النبطية",
                 Cazas = new List<Caza>()
             {
-                new Caza(){CazaName="قضاء صيدا"},
-new Caza(){CazaName="قضاء صور"},
-new Caza(){CazaName="قضاء جزين"}
+                    new Caza(){CazaName="قضاء النبطية"},
+new Caza(){CazaName="قضاء حاصبيا"},
+new Caza(){CazaName="قضاء مرجعيون"},
+new Caza(){CazaName="قضاء بنت جبيل"}
+               
 
             }
             };
@@ -75,10 +77,9 @@ new Caza(){CazaName="قضاء جزين"}
                 GovernorateName = "محافظة الجنوب",
                 Cazas = new List<Caza>()
             {
-                new Caza(){CazaName="قضاء النبطية"},
-new Caza(){CazaName="قضاء حاصبيا"},
-new Caza(){CazaName="قضاء مرجعيون"},
-new Caza(){CazaName="قضاء بنت جبيل"}
+                 new Caza(){CazaName="قضاء صيدا"},
+new Caza(){CazaName="قضاء صور"},
+new Caza(){CazaName="قضاء جزين"}
 
 
             }

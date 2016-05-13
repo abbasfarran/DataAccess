@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using DataEntities.Entities.Retail;
+using RetailStoreWinForms.StaticClasses;
 
-namespace RetailStoreWinForms
+namespace RetailStoreWinForms.GUI.RetailForms
 {
     public partial class CustomersList : Form
     {
@@ -124,5 +125,25 @@ namespace RetailStoreWinForms
                 MessageBox.Show("Please Select a Customer First", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void CustomersList_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //add shipping address
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (ShippingAddressStaticMethods.AddShippingAddress())
+            {
+                
+                if (dataGridView1.RowCount > 0)
+                {
+
+                    dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0];
+                }
+            }
+
+        }
     }
-}
+    }

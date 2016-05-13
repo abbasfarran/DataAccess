@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Windows.Forms;
 using DataAccess.Repositories;
 using DataEntities;
 using DataEntities.Entities.Retail;
+using RetailStoreWinForms.GUI;
+using RetailStoreWinForms.GUI.RetailForms;
 
-namespace RetailStoreWinForms
+namespace RetailStoreWinForms.StaticClasses
 {
     public static class CustomerStaticMethods
     {
-        public static  MyContext mct =new MyContext();
-        public static bool Addcustomer()
+        public static MyContext mct;
+       public static bool Addcustomer()
         {
             CustomerForm ctf = new CustomerForm();
             var result = ctf.ShowDialog();

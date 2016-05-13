@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Drawing.Text;
 using System.Windows.Forms;
-using DataAccess.Repositories;
 using DataEntities;
+using RetailStoreWinForms.GUI.RetailForms;
+using RetailStoreWinForms.StaticClasses;
 
-namespace RetailStoreWinForms
+namespace RetailStoreWinForms.GUI
 {
     public partial class Form1 : Form
     {
@@ -19,8 +19,8 @@ namespace RetailStoreWinForms
         {
             
            CustomerStaticMethods.Addcustomer();
-            CustomerStaticMethods.LoadCustomersForm(ref _customersList, this);
-            
+           CustomerStaticMethods.LoadCustomersForm(ref _customersList, this);
+           
         }
 
         private void existingCustomerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,6 +35,8 @@ namespace RetailStoreWinForms
         {
             MyContext mct=new MyContext();
             mct.Customers.FindAsync(1);
+            CustomerStaticMethods.mct = mct;
+            ShippingAddressStaticMethods.mct = mct;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

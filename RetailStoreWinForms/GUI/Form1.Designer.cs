@@ -1,4 +1,4 @@
-﻿namespace RetailStoreWinForms
+﻿namespace RetailStoreWinForms.GUI
 {
     partial class Form1
     {

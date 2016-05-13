@@ -1,4 +1,4 @@
-﻿namespace RetailStoreWinForms
+﻿namespace RetailStoreWinForms.GUI.RetailForms
 {
     partial class CustomerForm
     {
@@ -227,6 +227,7 @@
             this.Name = "CustomerForm";
             this.Padding = new System.Windows.Forms.Padding(11);
             this.Text = "CustomerForm";
+            this.Load += new System.EventHandler(this.CustomerForm_Load);
             this.Shown += new System.EventHandler(this.CustomerForm_Shown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

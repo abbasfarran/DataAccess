@@ -1,4 +1,4 @@
-﻿namespace RetailStoreWinForms
+﻿namespace RetailStoreWinForms.GUI.RetailForms
 {
     partial class CustomersList
     {
@@ -204,6 +204,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(130, 27);
             this.toolStripButton2.Text = "New Shipping Address";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton5
             // 
@@ -389,6 +390,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "CustomersList";
             this.Text = "CustomersList";
+            this.Load += new System.EventHandler(this.CustomersList_Load);
             this.Shown += new System.EventHandler(this.CustomersList_Shown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

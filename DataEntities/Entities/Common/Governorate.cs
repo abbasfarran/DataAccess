@@ -7,6 +7,9 @@ namespace DataEntities.Entities.Common
         public int Id { get; set; }
         public string GovernorateName { get; set; }
         public virtual ICollection<Caza> Cazas { get; set; }
-       
+        public override string ToString()
+        {
+            return GovernorateName;
+        }
     }
 }
