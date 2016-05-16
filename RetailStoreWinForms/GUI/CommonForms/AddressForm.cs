@@ -12,10 +12,12 @@ namespace RetailStoreWinForms.GUI.CommonForms
         public ShippingAddress ShippingAddress;
         public List<Governorate> Governorates;
         public List<Caza> Cazas;
+        public Customer Customer;
         public AddressForm()
         {
             InitializeComponent();
-            ShippingAddress = new ShippingAddress();
+          
+            
         }
 
       
@@ -24,6 +26,16 @@ namespace RetailStoreWinForms.GUI.CommonForms
         {
             comboBox1.DataSource = Governorates;
             comboBox1.SelectedIndex=-1;
+            comboBox2.SelectedIndex = -1;
+            comboBox1.SelectedItem = ShippingAddress?.Caza.Governorate;
+            comboBox2.SelectedItem = ShippingAddress?.Caza;
+            textBox2.Text = ShippingAddress?.Street;
+            textBox1.Text = ShippingAddress?.Village;
+            if (ShippingAddress != null)
+            {
+                Customer = ShippingAddress.Customer;
+            }
+            
         }
 
         private void AddressForm_Load(object sender, EventArgs e)
@@ -38,8 +50,32 @@ namespace RetailStoreWinForms.GUI.CommonForms
                 Governorate gov = new Governorate();
                 gov = (Governorate)comboBox1.SelectedItem;
                 comboBox2.DataSource = ShippingAddressStaticMethods.CazasByGovernorateId(gov);
+                comboBox2.SelectedIndex = -1;
+            }
+            else
+            {
+                comboBox2.DataSource = null;
             }
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ShippingAddress == null)
+                ShippingAddress=new ShippingAddress();
+            Caza caza = (Caza) comboBox2.SelectedItem;
+            ShippingAddress.CustomerId = Customer.Id;
+            ShippingAddress.CazaId = caza.Id;
+            ShippingAddress.Street = textBox2.Text;
+            ShippingAddress.Village = textBox1.Text;
+            this.DialogResult=DialogResult.Yes;
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.DialogResult=DialogResult.Abort;
+            this.Close();
         }
     }
 }

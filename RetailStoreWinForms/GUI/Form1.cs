@@ -17,9 +17,12 @@ namespace RetailStoreWinForms.GUI
 
         private void newCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-           CustomerStaticMethods.Addcustomer();
-           CustomerStaticMethods.LoadCustomersForm(ref _customersList, this);
+
+            if (CustomerStaticMethods.Addcustomer())
+            {
+                CustomerStaticMethods.LoadCustomersForm(ref _customersList, this);
+            }
+           
            
         }
 

@@ -191,6 +191,7 @@
             // 
             // toolStripLabel2
             // 
+            this.toolStripLabel2.BackColor = System.Drawing.Color.Maroon;
             this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(111, 27);
@@ -214,6 +215,7 @@
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(126, 27);
             this.toolStripButton5.Text = "Edit Shipping Address";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton6
             // 
@@ -223,6 +225,7 @@
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(149, 27);
             this.toolStripButton6.Text = "Remove Shipping Address";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStrip3
             // 

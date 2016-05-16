@@ -18,6 +18,11 @@ namespace DataAccessTests
         public void TestMethod1()
         {
             MyContext context=new MyContext();
+            Governorate tempgov = context.Governorates.FirstOrDefault(x => x.GovernorateName == "محافظة النبطية");
+            Governorate tempgov2 = context.Governorates.FirstOrDefault(x => x.GovernorateName == "محافظة الجنوب");
+            context.Governorates.Remove(tempgov2);
+            context.Governorates.Remove(tempgov);
+            context.SaveChanges();
             Governorate governorate1 = new Governorate() { GovernorateName = "محافظة بيروت", Cazas = new List<Caza>() { new Caza() { CazaName = "بيروت" } } };
             Governorate governorate2 = new Governorate()
             {
