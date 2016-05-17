@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DataEntities.Entities.Retail;
@@ -15,33 +16,36 @@ namespace RetailStoreWinForms.GUI.RetailForms
             ShippingAdressbgs = new BindingSource();
             Customersbgs.DataSourceChanged += Customersbgs_DataSourceChanged;
             ShippingAdressbgs.DataSourceChanged += ShippingAdressbgs_DataSourceChanged;
-            ;
+
         }
 
         private void ShippingAdressbgs_DataSourceChanged(object sender, EventArgs e)
         {
-            dataGridView2.DataSource = ShippingAdressbgs;
+            if (CustomersLoaded)
+                dataGridView2.DataSource = ShippingAdressbgs;
         }
 
         public BindingSource ShippingAdressbgs { get; set; }
         public BindingSource Customersbgs { get; set; }
-
+        private bool CustomersLoaded;
 
 
         private void Customersbgs_DataSourceChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = Customersbgs;
-            dataGridView1.CurrentCell = null;
+          
+
+
         }
 
         //customers list
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Customer customer = (Customer) dataGridView1.CurrentRow?.DataBoundItem;
-            ShippingAddressStaticMethods.BindShippingAddresses(customer,ShippingAdressbgs);
+            
         }
 
-        
+
+
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
@@ -53,7 +57,7 @@ namespace RetailStoreWinForms.GUI.RetailForms
         {
             if (CustomerStaticMethods.Addcustomer())
             {
-                CustomerStaticMethods.BindCustomers(this, dataGridView1);
+                CustomerStaticMethods.BindCustomers(this, dataGridView1, ref CustomersLoaded);
                 if (dataGridView1.RowCount > 0)
                 {
 
@@ -65,13 +69,10 @@ namespace RetailStoreWinForms.GUI.RetailForms
 
         private void CustomersList_Shown(object sender, EventArgs e)
         {
-            CustomerStaticMethods.BindCustomers(this, dataGridView1);
+            CustomerStaticMethods.BindCustomers(this, dataGridView1, ref CustomersLoaded);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         //edit customer
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -85,7 +86,7 @@ namespace RetailStoreWinForms.GUI.RetailForms
             if (customer != null)
             {
                 CustomerStaticMethods.Editcustomer(customer);
-                CustomerStaticMethods.BindCustomers(this, dataGridView1);
+                CustomerStaticMethods.BindCustomers(this, dataGridView1, ref CustomersLoaded);
                 if (dataGridView1.RowCount > 0)
                 {
 
@@ -111,7 +112,7 @@ namespace RetailStoreWinForms.GUI.RetailForms
             if (customer != null)
             {
                 CustomerStaticMethods.Removecustomer(customer);
-                CustomerStaticMethods.BindCustomers(this, dataGridView1);
+                CustomerStaticMethods.BindCustomers(this, dataGridView1, ref CustomersLoaded);
                 if (dataGridView1.RowCount > 0)
                 {
 
@@ -132,7 +133,7 @@ namespace RetailStoreWinForms.GUI.RetailForms
         //add shipping address
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-           
+
             Customer customer = (Customer) dataGridView1.CurrentRow?.DataBoundItem;
             if (customer == null)
             {
@@ -140,25 +141,24 @@ namespace RetailStoreWinForms.GUI.RetailForms
                     MessageBoxDefaultButton.Button1);
                 return;
             }
-           
+
 
             if (ShippingAddressStaticMethods.AddShippingAddress(customer))
+            {
+
+                if (dataGridView1.RowCount > 0)
                 {
-
-                    if (dataGridView1.RowCount > 0)
-                    {
-                    ShippingAddressStaticMethods.BindShippingAddresses(customer,ShippingAdressbgs);
-                        
-                    }
+                    ShippingAddressStaticMethods.BindShippingAddresses(customer, ShippingAdressbgs);
                 }
+            }
 
-            
-            
+
+
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            Customer customer = (Customer)dataGridView1.CurrentRow?.DataBoundItem;
+            Customer customer = (Customer) dataGridView1.CurrentRow?.DataBoundItem;
             ShippingAddress shippingAddress = (ShippingAddress) dataGridView2.CurrentRow?.DataBoundItem;
             if (shippingAddress == null)
             {
@@ -184,12 +184,12 @@ namespace RetailStoreWinForms.GUI.RetailForms
             {
                 rowpos = dataGridView2.CurrentRow.Index;
             }
-            ShippingAddress shippingAddress = (ShippingAddress)dataGridView2.CurrentRow?.DataBoundItem;
+            ShippingAddress shippingAddress = (ShippingAddress) dataGridView2.CurrentRow?.DataBoundItem;
             Customer customer = shippingAddress?.Customer;
             if (shippingAddress != null)
             {
                 ShippingAddressStaticMethods.RemoveShippingAddress(shippingAddress);
-                ShippingAddressStaticMethods.BindShippingAddresses(customer,ShippingAdressbgs);
+                ShippingAddressStaticMethods.BindShippingAddresses(customer, ShippingAdressbgs);
                 if (dataGridView2.RowCount > 0)
                 {
 
@@ -198,11 +198,38 @@ namespace RetailStoreWinForms.GUI.RetailForms
             }
             else
             {
-                MessageBox.Show("Please Select a shipping address First", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Select a shipping address First", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
-    }
-    }
 
-    
-    
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            Customer customer = (Customer) dataGridView1.CurrentRow?.DataBoundItem;
+            ShippingAddressStaticMethods.BindShippingAddresses(customer, ShippingAdressbgs);
+
+        }
+
+       
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow  row in dataGridView1.Rows)
+            {
+                Customer customer = (Customer)dataGridView1.Rows[row.Index].DataBoundItem;
+                if (customer?.ShippingAddresses != null)
+                {
+                    dataGridView1.Rows[row.Index].DefaultCellStyle
+                        .ForeColor = customer.ShippingAddresses.Count > 0 ? Color.Black : Color.Gray;
+                }
+                else
+                {
+                    dataGridView1.Rows[row.Index].DefaultCellStyle
+                             .ForeColor = Color.Gray;
+                }
+            }
+            dataGridView1.CurrentCell = null;
+        }
+           
+    }
+}

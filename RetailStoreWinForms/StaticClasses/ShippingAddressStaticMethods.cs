@@ -81,12 +81,12 @@ namespace RetailStoreWinForms.StaticClasses
         }
         public static void BindShippingAddresses(Customer customer,BindingSource ShippingAdressbgs)
         {
-            if (customer?.ShippingAddresses.Count == 0)
+            if (customer?.ShippingAddresses?.Count == 0)
             {
                 ShippingAdressbgs.DataSource = null;
                 return;
             }
-            ShippingAdressbgs.DataSource = customer?.ShippingAddresses.ToList();
+            ShippingAdressbgs.DataSource = customer?.ShippingAddresses?.ToList();
         }
         //public static void BindShippingAddresses(CustomersList customersList, DataGridView dgv)
         //{

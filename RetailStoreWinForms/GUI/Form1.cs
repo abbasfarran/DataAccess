@@ -40,7 +40,9 @@ namespace RetailStoreWinForms.GUI
             mct.Customers.FindAsync(1);
             CustomerStaticMethods.mct = mct;
             ShippingAddressStaticMethods.mct = mct;
+            
         }
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -49,7 +51,7 @@ namespace RetailStoreWinForms.GUI
                 Application.Exit();
             }
             
-            
+           
         }
     }
 }

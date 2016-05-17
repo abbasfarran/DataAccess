@@ -66,11 +66,15 @@ namespace RetailStoreWinForms.StaticClasses
            
         }
 
-        public static void BindCustomers(CustomersList customersList,DataGridView dgv)
+        public static void BindCustomers(CustomersList customersList,DataGridView dgv,ref bool bindingComplete)
         {
+            bindingComplete = false;
             CustomerRepository ctr = new CustomerRepository(mct);
             customersList.Customersbgs.DataSource = ctr.All();
-            
+            dgv.DataSource = customersList.Customersbgs;
+            dgv.CurrentCell = null;
+            bindingComplete = true;
+
         }
     }
 }
